@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title> Puzzle #{{question_number}} </title>
+        <script src = 'https://cdn.tailwindcss.com/'></script>
+    </head>
+
+    <body class='bg-gray-800'>
+        <form action='/check_answer/' method="POST">
+            {% csrf_token %}
+            <input type='number' class='hidden' value='{{question_number}}' name='number'>
+            <div class="w-full">
+                <div class="coding inverse-toggle px-5 pt-4  text-gray-100 text-sm font-mono subpixel-antialiased 
+                            bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+                    <div class="top mb-2 flex">
+                        <div class="h-5 w-5 bg-red-500 rounded-full"></div>
+                        <div class="ml-2 h-5 w-5 bg-orange-300 rounded-full"></div>
+                        <div class="ml-2 h-5 w-5 bg-green-500 rounded-full"></div>
+                    </div>
+                    <div class="mt-4 flex">
+                        <span class="text-green-400 text-2xl">puzzle_{{question_number}}:answer$</span>
+                        <input name='answer' placeholder='type here' class="text-2xl font-mono bg-gray-900 focus:outline-none flex-1 typing pl-3">
+                            
+                        <button type='submit' class="hidden bg-blue-500 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-blue-800 transition-colors">
+                            Submit!
+                            </button>
+                        </input>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <a href='/' class= 'flex text-xl mx-[10%] mt-[2%]'>
+            <svg class='my-auto' fill="#FFFFFF" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+            viewBox="0 0 330 330" xml:space="preserve">
+    <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001
+        c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213
+        C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606
+        C255,161.018,253.42,157.202,250.606,154.389z"/>
+            </svg>
+            <span class='ml-3 text-white hover:text-orange-700'>Return to the questions page</span>
+        </a>
+
+        <div class='text-white'>
+            <h1 class='text-3xl mt-[5%] mx-[5%]'>
+                {{name}}
+            </h1>
+
+            <div class='text-xl mt-[2%] mx-[7%]'>
+                {{description}}
+            </div>
+
+            <div class='flex justify-center my-[5%]'>
+                <img src={{imgpath}} alt="image_of_puzzle_{{question_number}}">
+            </div>
+        </div>
+    </body>
+    <footer class='fixed right-5 bottom-3 text-white font-mono'>
+        Website by PC, The Prog. Club IITI
+    </footer>
+</html>

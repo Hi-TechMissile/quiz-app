@@ -16,4 +16,4 @@ On Windows, run the following commands in the command prompt or `cmd` terminal.
 - `cd server`
 - Create a superuser: `python manage.py createsuperuser`
 - Start the development server: `python manage.py runserver`
-- Go to http://localhost:3000/admin to log in with your superuser credentials and make changes to the site's data.
+- Go to http://localhost:8000/admin to log in with your superuser credentials and make changes to the site's data.

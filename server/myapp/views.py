@@ -66,21 +66,28 @@ def signup(request):
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
 
-        if password != confirm_password:
+        try:
+            if password != confirm_password:
+                context = {
+                    'error': 'passwords don\'t match'
+                }
+                return render(request, 'signup.html', context)
+            
+            all_questions = Question.objects.all()
+            # user.remaining_questions.add(all_questions)
+
+            user = User.objects.create_user(username=username, password=password)
+
+            user.remaining_questions.set(all_questions)
+            user.save()
+            login(request, user)
+            return redirect('index')
+
+        except:
             context = {
-                'error': 'passwords don\'t match'
-            }
+                    'error': 'username already exists'
+                }
             return render(request, 'signup.html', context)
-        
-        all_questions = Question.objects.all()
-        # user.remaining_questions.add(all_questions)
-
-        user = User.objects.create_user(username=username, password=password)
-
-        user.remaining_questions.set(all_questions)
-        user.save()
-        login(request, user)
-        return redirect('index')
     
     return render(request, 'signup.html')
 
